@@ -26,9 +26,23 @@ describe('musicians REST api', () => {
 
     const aaron = {
         name: 'Aaron Illin',
-        eventRate: '$950',
+        eventRate: '$950 plus babysitting costs',
         genre: 'Industrial',
         instruments: [ 'guitar', 'bass', 'drums', 'bagpipes']
+    };
+
+    const dave = {
+        name: 'david spencer',
+        eventRate: '$5 and a slice',
+        genre: 'bluegrass',
+        instruments: [ 'harmonica', 'fiddle' ]
+    };
+
+    const wanda = {
+        name: 'Wanda Roun',
+        eventRate: '$875, one meal there, two to take home',
+        genre: 'classical',
+        instruments: ['xylophone', 'electric toothbrush']
     };
 
     function saveMusician(musician) {
@@ -68,6 +82,21 @@ describe('musicians REST api', () => {
                     assert.isOk(response.error);
                 }
             );
+    });
+
+    it('returns a list of all musicians', () => {
+        return Promise.all([
+            saveMusician(dave),
+            saveMusician(wanda)
+        ])
+            .then(() => request.get('/musicians'))
+            .then( res => {
+                const musicians = res.body;
+                assert.equal(musicians.length, 3);
+                assert.deepInclude(musicians, aaron);
+                assert.deepInclude(musicians, dave);
+                assert.deepInclude(musicians, wanda);
+            });
     });
 
 });
