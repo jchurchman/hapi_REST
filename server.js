@@ -1,6 +1,6 @@
-const Hapi = require('hapi');
+const restify = require('restify');
 
-const server = new Hapi.Server();
+const server = restify.createServer();
 
 server.connection({ port: 3000, host: 'localhost'});
 

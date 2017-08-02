@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jchurchman/hapi_REST.git"
+    "url": "git+https://github.com/jchurchman/restify_REST.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jchurchman/hapi_REST/issues"
+    "url": "https://github.com/jchurchman/restify_REST/issues"
   },
-  "homepage": "https://github.com/jchurchman/hapi_REST#readme",
+  "homepage": "https://github.com/jchurchman/restify_REST#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "mongoose": "^4.11.5",
