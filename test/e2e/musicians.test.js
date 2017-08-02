@@ -49,4 +49,13 @@ describe('musicians REST api', () => {
             });
     });
 
+    it('gets a musician by id', () => {
+        return request
+            .get(`/musicians/${aaron._id}`)
+            .then( res => res.body )
+            .then( gotMusician => {
+                assert.deepEqual(gotMusician, aaron);
+            });
+    });
+
 });
