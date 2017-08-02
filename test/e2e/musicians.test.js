@@ -58,4 +58,16 @@ describe('musicians REST api', () => {
             });
     });
 
+    it('returns error if faulty id is passed for get request', () => {
+        return request
+            .get('/musicians/642978425861ha834619863j')
+            .then(
+                () => { throw new Error('successful status code not expected');},
+                ({ response }) => {
+                    assert.equal(response.status, 500);
+                    assert.isOk(response.error);
+                }
+            );
+    });
+
 });
