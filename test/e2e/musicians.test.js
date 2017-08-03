@@ -99,4 +99,28 @@ describe('musicians REST api', () => {
             });
     });
 
+    it('updates an existing musician', () => {
+        return request.put(`/musicians/${aaron._id}`)
+            .send({ eventRate: '$20 if he can bring his kid'})
+            .then( res => {
+                assert.deepEqual( res.body, { modified: true });
+            });
+    });
+
+    it('deletes an existing musician', () => {
+        return request.del(`/musicians/${dave._id}`)
+            .then(res => {
+                const message = JSON.parse(res.text);
+                assert.deepEqual(message, { removed: true });
+            });
+    });
+
+    it('returns removed: false if bad id given for delete', () => {
+        return request.del(`/musicians/${dave._id}`)
+            .then(res => {
+                const message = JSON.parse(res.text);
+                assert.deepEqual(message, { removed: false });
+            });
+    });
+
 });
